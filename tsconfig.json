@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "baseUrl": ".",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "target": "es6",
+    "lib": [
+      "es6",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "paths": {
+      "@server/app": ["src/app"],
+      "@server/middleware/*": ["src/middleware/*"],
+      "@server/routes/*": ["src/routes/*"],
+      "@server/transformers/*": ["src/transformers/*"],
+      "@server/types/*": ["src/types/*"],
+      "@server/types": ["src/types/index"],
+      "@server/utils/*": ["src/utils/*"],
+      "@server/utils": ["src/utils/index"],
+      "@server/services/*": ["src/services/*"]
+    },
+    "include": ["src/**/*", "config/**/*", "**/*.json", "**/*.ts"],
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noEmit": false,
+    "isolatedModules": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "rootDirs": ["src"],
+    "skipLibCheck": true,
+    "composite": true,
+    "declaration": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "exclude": [
+      "node_modules",
+      "build",
+      "package.json",
+      "config/jest/setup-tests.ts",
+      "lint-staged.config.js"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "lint-staged.config.js",
+    "commitlint.config.js",
+    "__tests__/**/*",
+    "__mocks__/**/*",
+    "__test__/**/*"
+  ]
+}
