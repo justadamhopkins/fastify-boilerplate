@@ -1,7 +1,16 @@
 {
-  "watch": ["src"],
-  "ignore": ["src/**/*.test.ts", "node_modules"],
+  "watch": [
+    "src"
+  ],
+  "ignore": [
+    "src/**/*.test.ts",
+    "node_modules",
+    "prettier.config.js",
+    ".prettierignore"
+  ],
   "ext": "ts,mjs,js,json,graphql",
-  "exec": "etsc && node ./server.js",
-  "legacyWatch": true
+  "exec": "node ./build/src/server.js",
+  "execMap": {
+    "ts": "ts-node"
+  }
 }
