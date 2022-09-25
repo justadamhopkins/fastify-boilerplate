@@ -12,17 +12,34 @@
       "esnext"
     ],
     "paths": {
-      "@server/app": ["src/app"],
-      "@server/middleware/*": ["src/middleware/*"],
-      "@server/routes/*": ["src/routes/*"],
-      "@server/transformers/*": ["src/transformers/*"],
-      "@server/types/*": ["src/types/*"],
-      "@server/types": ["src/types/index"],
-      "@server/utils/*": ["src/utils/*"],
-      "@server/utils": ["src/utils/index"],
-      "@server/services/*": ["src/services/*"]
+      "@server/app": [
+        "src/app"
+      ],
+      "@server/middleware/*": [
+        "src/middleware/*"
+      ],
+      "@server/routes/*": [
+        "src/routes/*"
+      ],
+      "@server/transformers/*": [
+        "src/transformers/*"
+      ],
+      "@server/types/*": [
+        "src/types/*"
+      ],
+      "@server/types": [
+        "src/types/index"
+      ],
+      "@server/utils/*": [
+        "src/utils/*"
+      ],
+      "@server/utils": [
+        "src/utils/index"
+      ],
+      "@server/services/*": [
+        "src/services/*"
+      ]
     },
-    "include": ["src/**/*", "config/**/*", "**/*.json", "**/*.ts"],
     "sourceMap": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -38,19 +55,14 @@
     "isolatedModules": true,
     "module": "CommonJS",
     "moduleResolution": "node",
-    "rootDirs": ["src"],
+    "rootDirs": [
+      "src"
+    ],
     "skipLibCheck": true,
     "composite": true,
     "declaration": true,
     "typeRoots": [
       "./node_modules/@types"
-    ],
-    "exclude": [
-      "node_modules",
-      "build",
-      "package.json",
-      "config/jest/setup-tests.ts",
-      "lint-staged.config.js"
     ]
   },
   "exclude": [
@@ -59,6 +71,13 @@
     "commitlint.config.js",
     "__tests__/**/*",
     "__mocks__/**/*",
-    "__test__/**/*"
+    "__test__/**/*",
+    ",.prettierignore"
+  ],
+  "include": [
+    "src/**/*",
+    "configs/**/*",
+    "**/*.json",
+    "**/*.ts"
   ]
 }
