@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "Node"
+  },
+  "include": [
+    "src/**/*",
+    "config/**/*",
+    "**/*.json",
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "package.json",
+    "config/jest/**/*",
+    "**/__tests__/**/*",
+    "**/__mocks__/**/*",
+    "**/__test__/**/*",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "*.config.js",
+    "src/utils/tests"
+  ]
+}
