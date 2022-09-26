@@ -2,6 +2,7 @@ import autoLoad from '@fastify/autoload'
 import fastify, {FastifyInstance} from 'fastify'
 import path from "path";
 import cors from '@fastify/cors'
+import globalDecorators from "@server/utils/decorators/global";
 
 export const allowedCorsDomains: (string | RegExp)[] = [
     /test\.com$/,
@@ -15,19 +16,15 @@ export const build = (opts = {}): FastifyInstance => {
     const app = fastify(opts);
 
     app.register(cors, {
-        origin: false,
-        methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE'],
+        origin: allowedCorsDomains,
         optionsSuccessStatus: HTTP_OK
     })
 
-    app.register(autoLoad, {
-        dir: path.join(__dirname, 'routes'),
-        ignorePattern: /.*(test).ts/
-    })
+    app.register(globalDecorators)
 
     app.register(autoLoad, {
-        dir: path.join(__dirname, 'services'),
-        ignorePattern: /.*(test).ts/
+        dir: path.join(__dirname, 'routes'),
+        ignorePattern: /.*(test).ts/,
     })
 
 
