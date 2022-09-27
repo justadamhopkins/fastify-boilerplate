@@ -23,6 +23,11 @@ export const build = (opts = {}): FastifyInstance => {
     app.register(globalDecorators)
 
     app.register(autoLoad, {
+        dir: path.join(__dirname, 'plugins'),
+        options: Object.assign({}, opts)
+    })
+
+    app.register(autoLoad, {
         dir: path.join(__dirname, 'routes'),
         ignorePattern: /.*(test).ts/,
     })
