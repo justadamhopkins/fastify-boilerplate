@@ -3,17 +3,39 @@ import fastify, {FastifyInstance} from 'fastify'
 import path from "path";
 import cors from '@fastify/cors'
 import globalDecorators from "@server/utils/decorators/global";
+import fastifyEnv from '@fastify/env'
+import {allowedCorsDomains} from "@server/types/constants/api";
+import {HTTP_OK} from '@server/types/constants/statusCodes';
 
-export const allowedCorsDomains: (string | RegExp)[] = [
-    /test\.com$/,
-    /localhost:[0-9]{4}$/,
-    /local\.lick\.com:[0-9]{4}$/,
-];
+const schema = {
+    type: 'object',
+    required: ['PORT', 'BUILD_ENV'],
+    properties: {
+        PORT: {
+            type: 'string',
+            default: 3000
+        },
+        BUILD_ENV: {
+            type: 'string',
+            default: 'local'
+        }
+    }
+}
 
-const HTTP_OK = 200
 
-export const build = (opts = {}): FastifyInstance => {
+const options = {
+    schema: schema,
+    dotenv: {
+        path: path.resolve(__dirname, `../configs/env.${process.env.BUILD_ENV}`)
+    },
+}
+
+
+export const build = async (opts = {}): Promise<FastifyInstance> => {
     const app = fastify(opts);
+
+    app.register(fastifyEnv, options)
+    await app.after()
 
     app.register(cors, {
         origin: allowedCorsDomains,
