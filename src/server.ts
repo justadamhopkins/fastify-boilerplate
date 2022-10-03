@@ -8,6 +8,7 @@ const startServer = async () => {
         const app = await build({logger: true});
         await app.listen({port: DEFAULT_PORT})
     } catch (err) {
+        console.error(err)
         fastify().log.error(err)
         process.exit(1)
     }
