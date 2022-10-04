@@ -1,11 +1,12 @@
-import autoLoad from '@fastify/autoload';
-import fastify, { FastifyInstance } from 'fastify';
 import path from 'path';
+
+import autoLoad from '@fastify/autoload';
 import cors from '@fastify/cors';
-import globalDecorators from '@server/utils/decorators/global';
 import fastifyEnv from '@fastify/env';
 import { allowedCorsDomains } from '@server/types/constants/api';
 import { HTTP_OK } from '@server/types/constants/statusCodes';
+import globalDecorators from '@server/utils/decorators/global';
+import fastify, { FastifyInstance } from 'fastify';
 
 const schema = {
   type: 'object',

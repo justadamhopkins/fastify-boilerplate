@@ -1,5 +1,6 @@
-import { build } from './app';
 import fastify from 'fastify';
+
+import { build } from './app';
 
 const DEFAULT_PORT = 5000;
 
@@ -14,4 +15,4 @@ const startServer = async () => {
   }
 };
 
-startServer();
+startServer().catch((err) => console.error(err));

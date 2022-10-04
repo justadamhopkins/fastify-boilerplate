@@ -7,6 +7,7 @@ const routes = (fastify: FastifyInstance, ops, done) => {
       request: FastifyRequest,
       reply: FastifyReply
     ): Promise<FastifyReply> => {
+      console.log(request);
       return reply.send({ hello: 'world v2' });
     }
   );

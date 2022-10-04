@@ -29,7 +29,8 @@
     "tsconfig.test.json",
     ",*.json",
     "testCoverage/*",
-    "reports/*"
+    "reports/*",
+    "configs/*"
   ],
   "rules": {
     "curly": "error",
