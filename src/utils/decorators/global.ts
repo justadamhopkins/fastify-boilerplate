@@ -1,9 +1,9 @@
-import {FastifyInstance} from "fastify";
+import { FastifyInstance } from 'fastify';
 
 const globalDecorators = (fastify: FastifyInstance, options, done): void => {
-    fastify.decorate('add', (a: number, b: number) => a + b)
+  fastify.decorate('add', (a: number, b: number) => a + b);
 
-    done()
-}
+  done();
+};
 
-export default globalDecorators
+export default globalDecorators;

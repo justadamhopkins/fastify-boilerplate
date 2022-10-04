@@ -5,40 +5,17 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "target": "es6",
-    "lib": [
-      "es6",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es6", "dom", "dom.iterable", "esnext"],
     "paths": {
-      "@server/app": [
-        "src/app"
-      ],
-      "@server/middleware/*": [
-        "src/middleware/*"
-      ],
-      "@server/routes/*": [
-        "src/routes/*"
-      ],
-      "@server/transformers/*": [
-        "src/transformers/*"
-      ],
-      "@server/types/*": [
-        "src/types/*"
-      ],
-      "@server/types": [
-        "src/types/index"
-      ],
-      "@server/utils/*": [
-        "src/utils/*"
-      ],
-      "@server/utils": [
-        "src/utils/index"
-      ],
-      "@server/services/*": [
-        "src/services/*"
-      ]
+      "@server/app": ["src/app"],
+      "@server/middleware/*": ["src/middleware/*"],
+      "@server/routes/*": ["src/routes/*"],
+      "@server/transformers/*": ["src/transformers/*"],
+      "@server/types/*": ["src/types/*"],
+      "@server/types": ["src/types/index"],
+      "@server/utils/*": ["src/utils/*"],
+      "@server/utils": ["src/utils/index"],
+      "@server/services/*": ["src/services/*"]
     },
     "sourceMap": false,
     "esModuleInterop": true,
@@ -55,15 +32,11 @@
     "isolatedModules": true,
     "module": "CommonJS",
     "moduleResolution": "node",
-    "rootDirs": [
-      "src"
-    ],
+    "rootDirs": ["src"],
     "skipLibCheck": true,
     "composite": true,
     "declaration": true,
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "typeRoots": ["./node_modules/@types"]
   },
   "exclude": [
     "node_modules",
@@ -74,10 +47,5 @@
     "__test__/**/*",
     ",.prettierignore"
   ],
-  "include": [
-    "src/**/*",
-    "configs/**/*",
-    "**/*.json",
-    "**/*.ts"
-  ]
+  "include": ["src/**/*", "configs/**/*", "**/*.json", "**/*.ts"]
 }

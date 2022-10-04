@@ -3,12 +3,7 @@
   "compilerOptions": {
     "moduleResolution": "Node"
   },
-  "include": [
-    "src/**/*",
-    "config/**/*",
-    "**/*.json",
-    "**/*.ts"
-  ],
+  "include": ["src/**/*", "config/**/*", "**/*.json", "**/*.ts"],
   "exclude": [
     "node_modules",
     "build",
