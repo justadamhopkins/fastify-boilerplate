@@ -40,20 +40,13 @@ module.exports = {
   preset: 'ts-jest',
   roots: ['<rootDir>/src'],
   setupFiles: ['<rootDir>/configs/jest/jest.setup.ts'],
-  setupFilesAfterEnv: [
-    '<rootDir>/configs/jest/setup.postenv.ts',
-    '<rootDir>/configs/jest/loader-shim.js',
-  ],
   setupFilesAfterEnv: ['<rootDir>/configs/jest/setup.postenv.ts'],
-  testEnvironment: 'jest-environment-jsdom',
+  setupFilesAfterEnv: ['<rootDir>/configs/jest/setup.postenv.ts'],
+  testEnvironment: 'node',
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
   testPathIgnorePatterns: ['<rootDir>/build/', '<rootDir>/node_modules/'],
   transform: {
     '^.+\\.ts?(x)$': 'ts-jest',
-    '^.+\\.tsx?$': '<rootDir>/configs/jest/transforms/preprocess.js',
-    '^.+\\.json$': '<rootDir>/configs/jest/transforms/json-transform.js',
-    '^(?!.*\\.(js|jsx|mjs)$)':
-      '<rootDir>/configs/jest/transforms/file-transform.js',
   },
   transformIgnorePatterns: ['/node_modules/'],
 };
