@@ -1,4 +1,9 @@
-import Fastify from 'fastify';
+import Fastify, {
+  FastifyReply,
+  RawReplyDefaultExpression,
+  RawRequestDefaultExpression,
+  RawServerDefault,
+} from 'fastify';
 
 declare module 'fastify' {
   interface FastifyInstance extends Fastify {
@@ -10,3 +15,11 @@ declare module 'fastify' {
     };
   }
 }
+
+export interface FastifyReplyWithPayload<Payload extends RouteGenericInterface>
+  extends FastifyReply<
+    RawServerDefault,
+    RawRequestDefaultExpression,
+    RawReplyDefaultExpression,
+    Payload
+  > {}
