@@ -7,6 +7,10 @@ import { allowedCorsDomains } from '@server/types/constants/api';
 import { HTTP_OK } from '@server/types/constants/statusCodes';
 import globalDecorators from '@server/utils/decorators/global';
 import fastify, { FastifyInstance } from 'fastify';
+import {
+  globalErrorHandler,
+  notFoundHandler,
+} from '@server/utils/handlers/errors';
 
 const schema = {
   type: 'object',
@@ -52,6 +56,9 @@ export const build = async (opts = {}): Promise<FastifyInstance> => {
     dir: path.join(__dirname, 'routes'),
     ignorePattern: /.*(test).ts/,
   });
+
+  app.setNotFoundHandler(notFoundHandler);
+  app.setErrorHandler(globalErrorHandler);
 
   return app;
 };
