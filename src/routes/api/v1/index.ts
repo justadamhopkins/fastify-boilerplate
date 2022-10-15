@@ -5,15 +5,9 @@ export enum ETest {
 }
 
 const routes = (fastify: FastifyInstance, ops, done) => {
-  fastify.get(
-    '/',
-    async (
-      request: FastifyRequest,
-      reply: FastifyReply
-    ): Promise<FastifyReply> => {
-      return reply.send({ hello: 'world v1' });
-    }
-  );
+  fastify.get('/', (request: FastifyRequest, reply: FastifyReply): void => {
+    reply.send({ hello: 'world v1' });
+  });
 
   done();
 };
