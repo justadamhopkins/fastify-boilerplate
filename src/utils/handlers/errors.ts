@@ -1,40 +1,31 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { EBuildEnvironment } from '@server/types/enums/env';
-import { notFound, Boom } from '@hapi/boom';
+import { notFound, isBoom, Boom } from '@hapi/boom';
 
 export const globalErrorHandler = (
-  err: Boom,
+  err: Boom | any,
   req: FastifyRequest,
   reply: FastifyReply
-): FastifyReply => {
-  console.log(err);
-  const stack = err.stack || '';
-  const statusCode = err.output.statusCode || 500;
+): void => {
+  const isBoomErr = isBoom(err);
   const buildEnv = process.env.BUILD_ENV;
+  const stack = err.stack || '';
   const isDev =
     buildEnv !== EBuildEnvironment.Production &&
     buildEnv !== EBuildEnvironment.Test;
+  const statusCode = isBoomErr ? err.output.statusCode : err.status;
 
-  const extraData = isDev
-    ? {
-        cause: err.cause,
-        stackTrace: stack.replace(/[a-z_-\d]+.js:\d+:\d+/gi, '<mark>$&</mark>'),
-      }
-    : {
-        cause: {
-          properties: {
-            errors: err?.cause || [],
-          },
-          statusCode: err?.cause || statusCode,
-        },
-      };
+  if (isDev && isBoomErr) {
+    err.output.payload.stackTrace = stack.replace(
+      /[a-z_-\d]+.js:\d+:\d+/gi,
+      '<mark>$&</mark>'
+    );
+    err.output.payload.cause = err.cause;
+  }
 
-  return reply.status(statusCode).send({
-    message: err.message,
-    data: err.data ? err.data : undefined,
-    statusCode,
-    ...extraData,
-  });
+  const error = isBoomErr ? err.output.payload : err;
+
+  reply.status(statusCode).send(error);
 };
 
 export const notFoundHandler = (
