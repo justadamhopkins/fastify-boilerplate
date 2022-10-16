@@ -1,10 +1,6 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 
-export enum ETest {
-  Test = 'test',
-}
-
-const routes = (fastify: FastifyInstance, ops, done) => {
+const v1Routes = (fastify: FastifyInstance, ops, done) => {
   fastify.get('/', (request: FastifyRequest, reply: FastifyReply): void => {
     reply.send({ hello: 'world v1' });
   });
@@ -12,4 +8,4 @@ const routes = (fastify: FastifyInstance, ops, done) => {
   done();
 };
 
-export default routes;
+export default v1Routes;
