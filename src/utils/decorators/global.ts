@@ -1,9 +1,11 @@
 import { FastifyInstance } from 'fastify';
+import { getHeaderValue } from '@server/utils/http/headers';
+import fp from 'fastify-plugin';
 
-const globalDecorators = (fastify: FastifyInstance, options, done): void => {
-  fastify.decorate('add', (a: number, b: number) => a + b);
+const globalDecorators = fp((fastify: FastifyInstance, options, done): void => {
+  fastify.decorate('getHeaderValue', getHeaderValue);
 
   done();
-};
+});
 
 export default globalDecorators;
