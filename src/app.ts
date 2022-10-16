@@ -55,6 +55,7 @@ export const build = async (opts = {}): Promise<FastifyInstance> => {
   app.register(autoLoad, {
     dir: path.join(__dirname, 'routes'),
     ignorePattern: /.*(test).ts/,
+    autoHooks: true,
   });
 
   app.setNotFoundHandler(notFoundHandler);
