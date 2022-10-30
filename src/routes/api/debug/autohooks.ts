@@ -16,7 +16,6 @@ const autoHooks = (fastify: FastifyInstance, ops, done) => {
       done: HookHandlerDoneFunction
     ): void => {
       const debugHeader =
-        // @ts-ignore
         fastify.getHeaderValue(APP_DEBUG_HEADER_KEY, request) === 'true';
 
       if (!debugHeader) {
