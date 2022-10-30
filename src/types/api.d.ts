@@ -1,20 +1,20 @@
 import {
-  FastifyReplyType,
-  FastifyTypeProviderDefault,
-} from 'fastify/types/type-provider';
-import {
   FastifyReply,
   RawReplyDefaultExpression,
   RawRequestDefaultExpression,
   RawServerDefault,
   RouteGenericInterface,
 } from 'fastify';
-import { ContextConfigDefault } from 'fastify/types/utils';
 import { FastifySchema } from 'fastify/types/schema';
+import {
+  FastifyReplyType,
+  FastifyTypeProviderDefault,
+} from 'fastify/types/type-provider';
+import { ContextConfigDefault } from 'fastify/types/utils';
 
 export declare namespace API {
-  export interface IReplyWithPayload<Payload extends FastifyReplyType>
-    extends FastifyReply<
+  export type TReplyWithPayload<Payload extends FastifyReplyType> =
+    FastifyReply<
       RawServerDefault,
       RawRequestDefaultExpression,
       RawReplyDefaultExpression,
@@ -23,5 +23,5 @@ export declare namespace API {
       FastifySchema,
       FastifyTypeProviderDefault,
       Payload
-    > {}
+    >;
 }

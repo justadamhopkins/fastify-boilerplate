@@ -1,5 +1,5 @@
-import { FastifyInstance, FastifyRequest } from 'fastify';
 import { API } from '@server/types';
+import { FastifyInstance, FastifyRequest } from 'fastify';
 
 const schema = {
   response: {
@@ -20,7 +20,7 @@ const v1Routes = (fastify: FastifyInstance, ops, done) => {
 
 const getV1RouteCtrl = (
   request: FastifyRequest,
-  reply: API.IReplyWithPayload<{ hello: string }>
+  reply: API.TReplyWithPayload<{ hello: string }>
 ): void => {
   reply.send({ hello: 'world v1' });
 };
