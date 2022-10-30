@@ -1,5 +1,5 @@
 export enum EBuildEnvironment {
-    Production = "production",
-    Develop = "develop",
-    Test = 'test'
+  Production = 'production',
+  Develop = 'develop',
+  Test = 'test',
 }
