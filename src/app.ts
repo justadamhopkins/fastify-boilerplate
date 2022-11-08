@@ -3,14 +3,15 @@ import path from 'path';
 import autoLoad from '@fastify/autoload';
 import cors from '@fastify/cors';
 import fastifyEnv from '@fastify/env';
+import fastifyRedis from '@fastify/redis';
 import { allowedCorsDomains } from '@server/types/constants/api';
 import { HTTP_OK } from '@server/types/constants/statusCodes';
 import globalDecorators from '@server/utils/decorators/global';
-import fastify, { FastifyInstance } from 'fastify';
 import {
   globalErrorHandler,
   notFoundHandler,
 } from '@server/utils/handlers/errors';
+import fastify, { FastifyInstance } from 'fastify';
 
 const schema = {
   type: 'object',
@@ -36,7 +37,6 @@ const options = {
 
 export const build = async (opts = {}): Promise<FastifyInstance> => {
   const app = fastify(opts);
-
   app.register(fastifyEnv, options);
   await app.after();
 
@@ -44,6 +44,8 @@ export const build = async (opts = {}): Promise<FastifyInstance> => {
     origin: allowedCorsDomains,
     optionsSuccessStatus: HTTP_OK,
   });
+
+  app.register(fastifyRedis);
 
   app.register(globalDecorators);
 
