@@ -1,6 +1,6 @@
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { Boom, isBoom, notFound } from '@hapi/boom';
 import { EBuildEnvironment } from '@server/types/enums/env';
-import { notFound, isBoom, Boom } from '@hapi/boom';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
 export const globalErrorHandler = (
   err: Boom | any,
@@ -13,7 +13,7 @@ export const globalErrorHandler = (
   const isDev =
     buildEnv !== EBuildEnvironment.Production &&
     buildEnv !== EBuildEnvironment.Test;
-  const statusCode = isBoomErr ? err.output.statusCode : err.status;
+  const statusCode = isBoomErr ? err.output.statusCode : err.status || 500;
 
   if (isDev && isBoomErr) {
     err.output.payload.stackTrace = stack.replace(
