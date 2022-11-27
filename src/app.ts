@@ -3,10 +3,8 @@ import path from 'path';
 import autoLoad from '@fastify/autoload';
 import cors from '@fastify/cors';
 import fastifyEnv from '@fastify/env';
-import fastifyRedis from '@fastify/redis';
 import { allowedCorsDomains } from '@server/types/constants/api';
 import { HTTP_OK } from '@server/types/constants/statusCodes';
-import globalDecorators from '@server/utils/decorators/global';
 import {
   globalErrorHandler,
   notFoundHandler,
@@ -45,12 +43,14 @@ export const build = async (opts = {}): Promise<FastifyInstance> => {
     optionsSuccessStatus: HTTP_OK,
   });
 
-  app.register(fastifyRedis);
-
-  app.register(globalDecorators);
+  app.register(autoLoad, {
+    dir: path.join(__dirname, 'plugins/global'),
+    options: Object.assign({}, opts),
+    encapsulate: false,
+  });
 
   app.register(autoLoad, {
-    dir: path.join(__dirname, 'plugins'),
+    dir: path.join(__dirname, 'plugins/scoped'),
     options: Object.assign({}, opts),
   });
 
