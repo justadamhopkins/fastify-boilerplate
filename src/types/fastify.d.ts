@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { FastifyRequest } from 'fastify';
+import {FastifyRequest} from 'fastify';
 
 declare module 'fastify' {
   export interface FastifyInstance<
@@ -7,8 +7,13 @@ declare module 'fastify' {
     HttpRequest = IncomingMessage,
     HttpResponse = ServerResponse
   > {
-    PORT: string;
-    BUILD_ENV: string;
+    config: {
+      PORT: string;
+      BUILD_ENV: string;
+      REDIS_HOST: string;
+      REDIS_PORT: string;
+    };
+
     getHeaderValue(headerKey: string, req: FastifyRequest): string | undefined;
   }
 }
