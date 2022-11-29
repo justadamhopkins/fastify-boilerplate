@@ -3,6 +3,7 @@ import path from 'path';
 import autoLoad from '@fastify/autoload';
 import cors from '@fastify/cors';
 import fastifyEnv from '@fastify/env';
+import fastifyRedis from '@fastify/redis';
 import { allowedCorsDomains } from '@server/types/constants/api';
 import { HTTP_OK } from '@server/types/constants/statusCodes';
 import {
@@ -13,7 +14,7 @@ import fastify, { FastifyInstance } from 'fastify';
 
 const schema = {
   type: 'object',
-  required: ['PORT', 'BUILD_ENV'],
+  required: ['PORT', 'BUILD_ENV', 'REDIS_HOST'],
   properties: {
     PORT: {
       type: 'string',
@@ -22,6 +23,14 @@ const schema = {
     BUILD_ENV: {
       type: 'string',
       default: 'local',
+    },
+    REDIS_HOST: {
+      type: 'string',
+      default: '127.0.0.1',
+    },
+    REDIS_PORT: {
+      type: 'string',
+      default: '6379',
     },
   },
 };
@@ -43,6 +52,8 @@ export const build = async (opts = {}): Promise<FastifyInstance> => {
     optionsSuccessStatus: HTTP_OK,
   });
 
+  app.register(fastifyRedis, { host: app.config.REDIS_HOST });
+
   app.register(autoLoad, {
     dir: path.join(__dirname, 'plugins/global'),
     options: Object.assign({}, opts),
@@ -58,6 +69,7 @@ export const build = async (opts = {}): Promise<FastifyInstance> => {
     dir: path.join(__dirname, 'routes'),
     ignorePattern: /.*(test).ts/,
     autoHooks: true,
+    cascadeHooks: true,
     options: Object.assign({ prefix: '/api' }, opts),
   });
 
