@@ -58,6 +58,7 @@ export const build = async (opts = {}): Promise<FastifyInstance> => {
     dir: path.join(__dirname, 'routes'),
     ignorePattern: /.*(test).ts/,
     autoHooks: true,
+    options: Object.assign({ prefix: '/api' }, opts),
   });
 
   app.setNotFoundHandler(notFoundHandler);
